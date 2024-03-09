@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Collections;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int amount = 200; // Example amount in cents
+        calculateChange(amount);
+    }
+
+    public static void calculateChange(int amount) {
+        Integer[] coins = {200, 100, 50, 20, 10, 5, 2, 1}; // Available coins in cents
+        int change = amount - 72; // Subtracting 72 cents
+
+        System.out.println("Change:");
+
+        // Sort the coin denominations in descending order
+        Arrays.sort(coins, Collections.reverseOrder());
+
+        for (int coin : coins) {
+            int numCoins = change / coin;
+            if (numCoins > 0) {
+                if (coin >= 100) {
+                    System.out.println(numCoins + "C");
+                } else {
+                    System.out.println(numCoins + "ct");
+                }
+                change %= coin;
+            }
+        }
+    }
+}
